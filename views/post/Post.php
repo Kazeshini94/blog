@@ -4,8 +4,8 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><b><?php echo $posts['title']; ?></b></h5>
-                    <p class="card-text"><?php echo nl2br($posts['content']); ?></p>
+                    <h5 class="card-title"><b><?php echo $post['title']; ?></b></h5>
+                    <p class="card-text"><?php echo nl2br($post['content']); ?></p>
                 </div>
             </div>
         </div>

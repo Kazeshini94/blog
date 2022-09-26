@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Post;
+namespace App\post;
 
 use PDO;
 
 class PostRepo
 {
-    private $pdo;
+    private PDO $pdo;
 
     public function __construct(PDO $pdo)
     {
@@ -16,7 +16,7 @@ class PostRepo
     function fetchPosts(): bool|array
     {
         $stm =$this->pdo->query("SELECT * FROM `posts`");
-        return $stm -> fetchAll(PDO::FETCH_CLASS, "App\\Post\\PostModel");
+        return $stm -> fetchAll(PDO::FETCH_CLASS, "App\\post\\PostModel");
     }
 
     function fetchPost($id): PostModel
@@ -24,7 +24,7 @@ class PostRepo
 //    Prepared Statement
         $stm = $this->pdo->prepare("SELECT * FROM `posts` WHERE id = ? ");
         $stm->execute([$id]);
-        $stm->setFetchMode(PDO::FETCH_CLASS, "App\\Post\\PostModel");
+        $stm->setFetchMode(PDO::FETCH_CLASS, "App\\post\\PostModel");
         return $stm->fetch(PDO::FETCH_CLASS);
 
 //    Enables SQL - Injection! DO NOT USE THIS ! USE PREPARED STATEMENT ABOVE!

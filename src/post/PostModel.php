@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Post;
+namespace App\post;
 
 use ArrayAccess;
 

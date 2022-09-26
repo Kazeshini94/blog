@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Core;
+namespace App\core;
 
 use PDO;
-use App\Post\PostRepo;
-use App\Post\PostsController;
+use App\post\PostRepo;
+use App\post\PostsController;
+use PDOException;
 
 class Container
 {
@@ -25,11 +26,18 @@ class Container
                 );
             },
             'pdo' => function() {
-                $pdo = new PDO (
-                    'mysql:host=localhost:3307;dbname=blog;charset=utf8',
-                    'blog',
-                    'qE5LVPz@Zz[t*CnU'
-                );
+//            added Try-Catch so Error Message won`t reveal our Password
+//            if someone trys to access over a wrong User
+                try {
+                    $pdo = new PDO (
+                        'mysql:host=localhost:3307;dbname=blog;charset=utf8',
+                        'blog',
+                        'i)8s7MPCHR95.oxN'
+                    );
+                } catch (PDOException $e) {
+                    echo "Verbindung zur Datenbank fehlgeschlagen!";
+                    die();
+                }
                 $pdo -> setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 return $pdo;
             }

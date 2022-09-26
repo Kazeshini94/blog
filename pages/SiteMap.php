@@ -1,12 +1,13 @@
 <?php
+
 include"../init.php";
-include "../views/Layout/head.php";
+include "../views/layout/head.php";
 ?>
 
 <title>Startseite</title>
 </head>
 
-<?php include "../views/Layout/header.php"; ?>
+<?php include "../views/layout/header.php"; ?>
 
 <br/><br/>
 
@@ -16,7 +17,14 @@ include "../views/Layout/head.php";
     <p class="lead">Das hier ist die Übersicht des Blogs.</p>
 
     <?php
-    $postRepo = $container->make("postsController");
+
+    /** @var $container
+     *
+     * Container handles everything from creating postRepo
+     * to handling the DB Query Request !!
+     * (if an Instance of postRepo exists gets used if not a new one will be created)
+     */
+    $postRepo = $container->make("postRepo");
     $posts = $postRepo -> fetchPosts();
     ?>
 
@@ -30,4 +38,4 @@ include "../views/Layout/head.php";
 </div>
 
 
-<?php include "../views/Layout/footer.php" ?>
+<?php include "../views/layout/footer.php" ?>
