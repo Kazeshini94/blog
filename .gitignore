@@ -41,6 +41,9 @@
 
 # Build data
 /build/
+.idea/*
+*.xml
+*.xhtml
 
 # Composer PHAR
 /composer.phar
