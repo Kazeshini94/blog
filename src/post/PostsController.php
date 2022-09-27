@@ -35,7 +35,7 @@ class  PostsController
     {
         $posts = $this->postRepo->fetchPosts();
 
-        $this->render("post/Index", [
+        $this->render("post/index", [
             "posts" => $posts
         ]);
 
@@ -48,9 +48,9 @@ class  PostsController
         $id = $_GET['id'];
         $post = $this->postRepo->fetchPost($id);
 
-        $this->render("post/Post", [
+        $this->render("post/post", [
             "post" => $post
         ]);
-//        include __DIR__ . "/../../views/post/Post.php";
+//        include __DIR__ . "/../../views/post/post.php";
     }
 }
