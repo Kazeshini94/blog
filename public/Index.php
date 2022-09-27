@@ -2,7 +2,7 @@
 require __DIR__ . "/../init.php";
 require __DIR__ ."/../views/layout/head.php";
 
-// Here we define every possible route and their function !
+// Here we define every possible route and their Controller + Function !!!
 $routes = [
     '/index' => [
         'controller' => 'postsController',
@@ -17,7 +17,6 @@ $routes = [
         'method' => 'show'
     ],
 ];
-
 // We check if PATH_INFO is set and if it`s set executes the right Pathing via Routing !
 // This enables us to handle all sites over 1 Front Controller index.php!
 $pathInfo = $_SERVER['PATH_INFO'];
@@ -34,6 +33,12 @@ if (isset($routes[$pathInfo])) {
     $method = $route['method'];
 
     $controller->$method();
+}
+// If PATH_INFO is NULL redirect to real Index with PATH_INFO set!
+// Our ROUTING needs PATH_INFO to WORK properly ! (or at all !!!)
+if (!isset($pathInfo)) {
+    header('Location: '.'index.php/index');
+    die;
 }
 
 // Would need a new If else for every new Path / Route  with the code below !
