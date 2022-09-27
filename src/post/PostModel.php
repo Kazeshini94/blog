@@ -1,32 +1,13 @@
 <?php
 
 namespace App\post;
-
+use App\core\AbstractModel;
 use ArrayAccess;
 
-class PostModel implements ArrayAccess
+// Now we only need to define the Variables in here and Array Access gets handled over the Abstract Class!
+class PostModel extends AbstractModel implements ArrayAccess
 {
     public $id;
     public $title;
     public $content;
-
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->$offset);
-    }
-
-    public function offsetGet(mixed $offset): mixed
-    {
-        return $this->$offset;
-    }
-
-    public function offsetSet(mixed $offset, mixed $value): void
-    {
-        $this->$offset = $value;
-    }
-
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->$offset);
-    }
 }
