@@ -5,17 +5,17 @@ require __DIR__ ."/../views/layout/head.php";
 // Here we define every possible route and their Controller + Function !!!
 $routes = [
     '/index' => [
-        'controller' => 'postsController',
+        'controller' => 'postController',
         'method' => 'index'
     ],
     '/siteMap' => [
-        'controller' => 'postsController',
+        'controller' => 'postController',
         'method' => 'index'
     ],
     '/post' => [
-        'controller' => 'postsController',
+        'controller' => 'postController',
         'method' => 'show'
-    ],
+    ]
 ];
 // We check if PATH_INFO is set and if it`s set executes the right Pathing via Routing !
 // This enables us to handle all sites over 1 Front Controller index.php!
@@ -27,7 +27,7 @@ if (isset($routes[$pathInfo])) {
      *
      * Container handles everything from creating postRepo
      * to handling the DB Query Request !!
-     * (if an Instance of postRepo exists gets used if not a new one will be created)
+     * (if an Instance of postRepo exists, it`s used, if not a new one will be created)
      */
     $controller = $container->make($route['controller']);
     $method = $route['method'];
@@ -38,7 +38,7 @@ if (isset($routes[$pathInfo])) {
 // Our ROUTING needs PATH_INFO to WORK properly ! (or at all !!!)
 if (!isset($pathInfo)) {
     header('Location: '.'index.php/index');
-    die;
+     die;
 }
 
 // Would need a new If else for every new Path / Route  with the code below !

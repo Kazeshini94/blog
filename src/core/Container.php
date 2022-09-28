@@ -2,9 +2,10 @@
 
 namespace App\core;
 
+use App\post\CommentRepo;
 use PDO;
 use App\post\PostRepo;
-use App\post\PostsController;
+use App\post\PostController;
 use PDOException;
 
 class Container
@@ -15,36 +16,42 @@ class Container
     public function __construct()
     {
         $this->recipes = [
-            'postsController' => function () {
-                return new PostsController(
-                  $this->make("postRepo")
+            'commentRepo' => function() {
+                return new CommentRepo(
+                    $this->make('pdo')
                 );
             },
-            'postRepo' => function() {
+            'postController' => function () {
+                return new PostController(
+                    $this->make("postRepo"),
+                    $this->make("commentRepo")
+                );
+            },
+            'postRepo' => function () {
                 return new PostRepo(
                     $this->make("pdo")
                 );
             },
-            'pdo' => function() {
+            'pdo' => function () {
 //            added Try-Catch so Error Message won`t reveal our Password
 //            if someone trys to access over a wrong User
                 try {
                     $pdo = new PDO (
                         'mysql:host=localhost:3307;dbname=blog;charset=utf8',
                         'blog',
-                        'i)8s7MPCHR95.oxN'
+                        'qE5LVPz@Zz[t*CnU'
                     );
                 } catch (PDOException $e) {
                     echo "Verbindung zur Datenbank fehlgeschlagen!";
                     die();
                 }
-                $pdo -> setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 return $pdo;
             }
         ];
     }
 
-//    creates Instances of Objects depending on the given Recipe!  See Index.php for use-case!
+//    creates Instances of Objects depending on the given Recipe!  See index.php for use-case!
 //    with this function you don`t have to create a function for every private Parameter !
 //    declare the specifics of any new Parameter + Function within the Recipe List! (BluePrint for Variables)
     public function make($name)

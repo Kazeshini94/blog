@@ -23,7 +23,8 @@ abstract class AbstractRepo
         $model = $this->getModelName();
 
         $stm =$this->pdo->query("SELECT * FROM {$table}");
-        return $stm -> fetchAll(PDO::FETCH_CLASS, "{$model}");
+        $posts = $stm -> fetchAll(PDO::FETCH_CLASS, "{$model}");
+        return $posts;
     }
 
     function find($id): PostModel
@@ -34,7 +35,8 @@ abstract class AbstractRepo
         $stm = $this->pdo->prepare("SELECT * FROM {$table} WHERE id = ? ");
         $stm->execute([$id]);
         $stm->setFetchMode(PDO::FETCH_CLASS, "{$model}");
-        return $stm->fetch(PDO::FETCH_CLASS);
+        $post = $stm->fetch(PDO::FETCH_CLASS);
+        return $post;
 
 //    Enables SQL - Injection! DO NOT USE THIS ! USE PREPARED STATEMENT ABOVE!
 //    $query = $pdo->query("SELECT * FROM `posts` WHERE title='{$title}'");
