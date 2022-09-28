@@ -39,7 +39,7 @@ class Container
                     $pdo = new PDO (
                         'mysql:host=localhost:3307;dbname=blog;charset=utf8',
                         'blog',
-                        'qE5LVPz@Zz[t*CnU'
+                        'i)8s7MPCHR95.oxN'
                     );
                 } catch (PDOException $e) {
                     echo "Verbindung zur Datenbank fehlgeschlagen!";

@@ -30,12 +30,13 @@ class PostController extends AbstractController
 
     public function show(): void
     {
+        // Gets Post id !
         $id = $_GET['id'];
         if (isset($_POST['content'])) {
             $content = $_POST['content'];
             $this -> commentRepo ->insertForPost($id, $content);
         }
-        var_dump($_POST['content']);
+
         $post = $this->postRepo->find($id);
         $comments = $this->commentRepo->allByPost($id);
 

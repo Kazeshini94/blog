@@ -7,8 +7,8 @@
         <?php if (isset($posts)) {
             foreach ($posts as $post): ?>
                 <li>
-                    <a href="post?id=<?php echo $post->id; ?>"</a>
-                    <?php echo $post->title; ?>
+                    <a href="post?id=<?php echo e($post->id); ?>"</a>
+                    <?php echo e($post->title); ?>
                 </li>
             <?php endforeach;
         } ?>

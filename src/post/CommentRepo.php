@@ -9,7 +9,7 @@ class CommentRepo extends AbstractRepo
 {
     function getTableName(): string
     {
-        return "comments";
+        return e("comments");
     }
 
     function getModelName(): string
@@ -21,7 +21,7 @@ class CommentRepo extends AbstractRepo
     function insertForPost($postId, $content)
     {
         $table = $this->getTableName();
-        $stm = $this->pdo->prepare("INSERT INTO `{$table}` (`posts_id`, `content`) VALUES (?, ?)");
+        $stm = $this->pdo->prepare("INSERT INTO `{$table}` (`post_id`, `content`) VALUES (?, ?)");
         $stm->execute([
         $postId, $content
         ]);
@@ -32,7 +32,7 @@ class CommentRepo extends AbstractRepo
         $table = $this->getTableName();
         $model = $this->getModelName();
 
-        $stm = $this->pdo->prepare("SELECT * FROM {$table} WHERE posts_id = :id");
+        $stm = $this->pdo->prepare("SELECT * FROM {$table} WHERE post_id = :id");
         $stm->execute(['id' => $id]);
         return $stm->fetchAll(PDO::FETCH_CLASS, "{$model}");
     }
