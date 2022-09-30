@@ -1,6 +1,3 @@
-<?php
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,25 +21,23 @@
 <header>
     <nav class="navbar navbar-expand-xxl navbar-dark bg-dark" aria-label="default navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"> Blog </a>
+            <a class="navbar-brand" href="index"> Blog Homepage</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarXxl"
                     aria-controls="navbarXxl" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarXxl">
-                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index">Home</a>
+            <div class="collapse navbar-collapse container-fluid" id="navbarXxl">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item align-self-end">
+                        <a class="nav-link" href="login">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="siteMap">SiteMap</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="siteMap">Placeholder</a>
+                    <li class="nav-item align-self-end align-items-end">
+                        <!--  Logout function defined in index.php  -->
+                        <a class="nav-link align-self-end" href="logout">Logout</a>
                     </li>
                 </ul>
-                <form role="search">
+                <form role="search" hidden>
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                 </form>
             </div>

@@ -3,6 +3,9 @@
 namespace App\core;
 
 use App\post\CommentRepo;
+use App\user\LoginController;
+use App\user\LoginService;
+use App\user\UserRepo;
 use PDO;
 use App\post\PostRepo;
 use App\post\PostController;
@@ -16,9 +19,14 @@ class Container
     public function __construct()
     {
         $this->recipes = [
-            'commentRepo' => function() {
-                return new CommentRepo(
-                    $this->make('pdo')
+            'loginService' => function() {
+                return new LoginService(
+                  $this->make("userRepo")
+                );
+            },
+            'loginController' => function() {
+                return new LoginController(
+                    $this->make("loginService")
                 );
             },
             'postController' => function () {
@@ -32,6 +40,16 @@ class Container
                     $this->make("pdo")
                 );
             },
+            'commentRepo' => function() {
+                return new CommentRepo(
+                    $this->make('pdo')
+                );
+            },
+            'userRepo' => function() {
+                return new UserRepo(
+                    $this->make('pdo')
+                );
+            },
             'pdo' => function () {
 //            added Try-Catch so Error Message won`t reveal our Password
 //            if someone trys to access over a wrong User
@@ -39,7 +57,7 @@ class Container
                     $pdo = new PDO (
                         'mysql:host=localhost:3307;dbname=blog;charset=utf8',
                         'blog',
-                        'qE5LVPz@Zz[t*CnU'
+                        'i)8s7MPCHR95.oxN'
                     );
                 } catch (PDOException $e) {
                     echo "Verbindung zur Datenbank fehlgeschlagen!";

@@ -3,11 +3,12 @@
 namespace App\post;
 use App\core\AbstractController;
 
+/**
+ * @property PostRepo $postRepo
+ * @property CommentRepo $commentRepo
+ */
 class PostController extends AbstractController
 {
-    protected PostRepo $postRepo;
-    protected CommentRepo $commentRepo;
-
     public function __construct(
         PostRepo $postRepo,
         CommentRepo $commentRepo )
@@ -30,12 +31,13 @@ class PostController extends AbstractController
 
     public function show(): void
     {
+        // Gets Post id !
         $id = $_GET['id'];
         if (isset($_POST['content'])) {
             $content = $_POST['content'];
             $this -> commentRepo ->insertForPost($id, $content);
         }
-        var_dump($_POST['content']);
+
         $post = $this->postRepo->find($id);
         $comments = $this->commentRepo->allByPost($id);
 
