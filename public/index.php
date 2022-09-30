@@ -1,4 +1,7 @@
 <?php
+//Session Start should always be the first thing that is happening !!!
+session_start();
+
 require __DIR__ . "/../init.php";
 require __DIR__ ."/../views/layout/head.php";
 
@@ -15,7 +18,19 @@ $routes = [
     '/post' => [
         'controller' => 'postController',
         'method' => 'show'
-    ]
+    ],
+    '/login' => [
+        'controller' => 'loginController',
+        'method' => 'login'
+    ],
+    '/dashboard' => [
+        'controller' => 'loginController',
+        'method' => 'dashboard'
+    ],
+    '/logout' => [
+        'controller' => 'loginController',
+        'method' => 'logout'
+    ],
 ];
 // We check if PATH_INFO is set and if it`s set executes the right Pathing via Routing !
 // This enables us to handle all sites over 1 Front Controller index.php!

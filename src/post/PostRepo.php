@@ -8,7 +8,7 @@ class PostRepo extends AbstractRepo
 {
     public function getTableName(): string
     {
-        return "posts";
+        return e("posts");
     }
     public function getModelName(): string
     {
