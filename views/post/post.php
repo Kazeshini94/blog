@@ -14,7 +14,7 @@
             <div class="card">
                 <h5 class="card-title"><b><?php echo e($post['title']); ?></b></h5>
                 <div class="card-body">
-                    <p class="card-text"><?php echo nl2br($post['content']); ?></p>
+                    <p class="card-text"><?php echo e(nl2br($post['content'])); ?></p>
                 </div>
             </div>
         </div>
